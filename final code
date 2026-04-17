@@ -1,0 +1,10 @@
+./gemm_avx -run
+
+---
+
+### Final Instructions:
+1.  **Run the Python script** locally (`python roofline.py`) to generate the `roofline_model.png` image.
+2.  **Upload** the image to your GitHub repo.
+3.  **Commit and Push** all files (`gemm_avx.cpp`, `Makefile`, `roofline.py`, `README.md`, `roofline_model.png`).
+
+**Now, when a recruiter from NVIDIA or AWS looks at your profile, they see a working C++ kernel, a professional build system, and a scientific performance plot.**
