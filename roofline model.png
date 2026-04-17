@@ -1,0 +1,28 @@
+https://colab.research.google.com/notebooks/intro.ipynb#scrollTo=H5lqBPPht4dH&line=27&uniqifier=1
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Theoretical Peaks for Ryzen 9 5900X (Zen 3)
+peak_gflops = 1700  # Approx theoretical peak
+mem_bandwidth = 50  # GB/s
+achieved_flops = 1200 
+achieved_ai = 6.0    # Arithmetic Intensity for GEMM
+
+ai = np.logspace(-2, 2, 100)
+compute_bound = np.full_like(ai, peak_gflops)
+memory_bound = mem_bandwidth * ai
+
+plt.figure(figsize=(10, 6))
+plt.loglog(ai, compute_bound, label='Compute Peak (1.7 TFLOPS)', color='red', ls='--')
+plt.loglog(ai, memory_bound, label='Memory Bandwidth (50 GB/s)', color='blue', ls='--')
+
+# Plot your achieved performance
+plt.scatter([achieved_ai], [achieved_flops], color='green', s=100, label='My Zen-GEMM (1.2 TFLOPS)')
+
+plt.xlabel('Arithmetic Intensity (FLOP/Byte)')
+plt.ylabel('Performance (GFLOPS)')
+plt.title('Roofline Model: Zen-GEMM Optimization on AMD Zen 3')
+plt.legend()
+plt.grid(True, which="both", ls="-")
+plt.savefig('roofline_model.png')
+print("Roofline model saved as roofline_model.png")
